@@ -1,0 +1,18 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cod-mq
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cod-mq
+    spec:
+      containers:
+      - name: cod-mq
+        image: rabbitmq
+        ports:
+        - containerPort: 4369
+        - containerPort: 5672

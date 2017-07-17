@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cod-search
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cod-search
+    spec:
+      containers:
+      - name: cod-search
+        image: diegodelemos/cod-search
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+#        volumeMounts:
+#          - mountPath: /usr/share/elasticsearch/data/elasticsearch
+#            name: data
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: search

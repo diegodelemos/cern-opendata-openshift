@@ -1,0 +1,37 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cod-worker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cod-worker
+    spec:
+      containers:
+      - name: cod-worker
+        image: diegodelemos/cod-web
+        command: ["celery"]
+        args: ["worker", "-A", "cernopendata.celery", "--loglevel=INFO"]
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: VIRTUALENVWRAPPER_PYTHON
+          value: /usr/local/bin/python
+        - name: APP_SQLALCHEMY_DATABASE_URI
+          value: postgresql+psycopg2://cernopendata:dbpass123@cod-db:5432/cernopendata
+        - name: APP_CACHE_REDIS_HOST
+          value: cod-cache
+        - name: APP_CACHE_REDIS_URL
+          value: redis://cod-cache:6379/0
+        - name: APP_ACCOUNTS_SESSION_REDIS_URL
+          value: redis://cod-cache:6379/1
+        - name: APP_BROKER_URL
+          value: amqp://guest:guest@cod-mq:5672/
+        - name: APP_CELERY_RESULT_BACKEND
+          value: redis://cod-cache:6379/2
+        - name: APP_SEARCH_ELASTIC_HOSTS
+          value: cod-search

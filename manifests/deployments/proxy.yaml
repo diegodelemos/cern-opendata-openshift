@@ -1,0 +1,57 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cod-proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: cod-proxy
+      labels:
+        app: cod-proxy
+      annotations:
+        pod.beta.kubernetes.io/init-containers: '[
+            {
+                "name": "install",
+                "image": "diegodelemos/cod-web",
+                "imagePullPolicy": "IfNotPresent",
+                "command": ["cp", "-R", "/usr/local/var/cernopendata-instance/static", "/static"],
+                "volumeMounts": [
+                    {
+                      "name": "static",
+                      "mountPath": "/static"
+                    }
+                ]
+            }
+        ]'
+    spec:
+      containers:
+      - name: cod-proxy
+        image: nginx
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d
+          - name: var-run
+            mountPath: /var/run
+          - name: var-cache-nginx
+            mountPath: /var/cache/nginx
+          - name: var-log-nginx
+            mountPath: /var/log/nginx
+          - name: static
+            mountPath: /static/
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+        - name: var-run
+          emptyDir: {}
+        - name: var-cache-nginx
+          emptyDir: {}
+        - name: var-log-nginx
+          emptyDir: {}
+        - name: static
+          emptyDir: {}

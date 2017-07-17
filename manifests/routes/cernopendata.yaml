@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: cernopendata
+spec:
+  host: test-opendata-dev.web.cern.ch
+  to:
+    kind: Service
+    name: cod-proxy
+  port:
+    targetPort: http
+  selector:
+    app: cod-proxy

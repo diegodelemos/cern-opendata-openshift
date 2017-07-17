@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cod-search
+  labels:
+    run: cod-search
+spec:
+  ports:
+  - name: restapi
+    port: 9200
+    protocol: TCP
+  - name: api
+    port: 9300
+    protocol: TCP
+  selector:
+    app: cod-search
