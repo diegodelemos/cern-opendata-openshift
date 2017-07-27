@@ -1,6 +1,6 @@
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: DeploymentConfig
 metadata:
   name: cod-proxy
 spec:
@@ -16,7 +16,7 @@ spec:
                 "name": "install",
                 "image": "diegodelemos/cod-web",
                 "imagePullPolicy": "IfNotPresent",
-                "command": ["cp", "-R", "/usr/local/var/cernopendata-instance/static", "/static"],
+                "command": ["cp", "-R", "/usr/local/var/cernopendata-instance/static/", "/static"],
                 "volumeMounts": [
                     {
                       "name": "static",
@@ -42,7 +42,7 @@ spec:
           - name: var-log-nginx
             mountPath: /var/log/nginx
           - name: static
-            mountPath: /static/
+            mountPath: /static
       volumes:
         - name: nginx-config
           configMap:

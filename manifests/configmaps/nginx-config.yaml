@@ -13,7 +13,8 @@ data:
         error_log   /dev/stdout;
 
         location /static {
-           root /static;
+           root /static/;
+           autoindex off;
         }
 
         location / {
