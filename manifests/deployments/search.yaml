@@ -16,10 +16,3 @@ spec:
         ports:
         - containerPort: 9200
         - containerPort: 9300
-#        volumeMounts:
-#          - mountPath: /usr/share/elasticsearch/data/elasticsearch
-#            name: data
-#      volumes:
-#        - name: data
-#          persistentVolumeClaim:
-#            claimName: search

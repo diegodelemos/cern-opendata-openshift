@@ -22,10 +22,3 @@ spec:
           value: cernopendata
         - name: POSTGRESQL_PASSWORD
           value: dbpass123
-#        volumeMounts:
-#          name: data
-#          mountPath: /var/lib/pgsql/data
-#      volumes:
-#        - name: data
-#          persistentVolumeClaim:
-#            claimName: db

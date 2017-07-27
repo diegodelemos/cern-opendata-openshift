@@ -16,10 +16,3 @@ spec:
         ports:
         - containerPort: 5432
           name: tcp
-#        volumeMounts:
-#          name: data
-#          mountPath: /data
-#      volumes:
-#        - name: data
-#          persistentVolumeClaim:
-#            claimName: cache
