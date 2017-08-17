@@ -2,21 +2,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-proxy
+  name: cds-proxy
 spec:
   replicas: 1
   template:
     metadata:
-      name: cod-proxy
+      name: cds-proxy
       labels:
-        app: cod-proxy
+        app: cds-proxy
       annotations:
         pod.beta.kubernetes.io/init-containers: '[
             {
                 "name": "install",
-                "image": "diegodelemos/cod-web",
+                "image": "switowski/cds-web",
                 "imagePullPolicy": "IfNotPresent",
-                "command": ["cp", "-R", "/usr/local/var/cernopendata-instance/static", "/static"],
+                "command": ["cp", "-R", "/usr/local/var/cds-instance/static", "/static"],
                 "volumeMounts": [
                     {
                       "name": "static",
@@ -27,7 +27,7 @@ spec:
         ]'
     spec:
       containers:
-      - name: cod-proxy
+      - name: cds-proxy
         image: nginx
         ports:
         - containerPort: 8080

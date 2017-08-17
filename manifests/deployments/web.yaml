@@ -2,47 +2,47 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-web
+  name: cds-web
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: cod-web
+        app: cds-web
     spec:
       containers:
-      - name: cod-web
-        image: diegodelemos/cod-web
+      - name: cds-web
+        image: switowski/cds-web
         command:
           - '/bin/bash'
           - '-c'
           - |-
-            cp /cod-config/* /usr/local/var/cernopendata-instance/ &&
-            exec cernopendata run -h 0.0.0.0
+            cp /cds-config/* /usr/local/var/cds-instance/ &&
+            exec cds run -h 0.0.0.0
         ports:
         - containerPort: 5000
           name: http
         volumeMounts:
           - name: configuration
-            mountPath: /cod-config
+            mountPath: /cds-config
         env:
         - name: VIRTUALENVWRAPPER_PYTHON
           value: /usr/local/bin/python
         - name: APP_SQLALCHEMY_DATABASE_URI
-          value: postgresql+psycopg2://cernopendata:dbpass123@cod-db:5432/cernopendata
+          value: postgresql+psycopg2://cds:dbpass123@cds-db:5432/cds
         - name: APP_CACHE_REDIS_HOST
-          value: cod-cache
+          value: cds-cache
         - name: APP_CACHE_REDIS_URL
-          value: redis://cod-cache:6379/0
+          value: redis://cds-cache:6379/0
         - name: APP_ACCOUNTS_SESSION_REDIS_URL
-          value: redis://cod-cache:6379/1
+          value: redis://cds-cache:6379/1
         - name: APP_BROKER_URL
-          value: amqp://guest:guest@cod-mq:5672/
+          value: amqp://guest:guest@cds-mq:5672/
         - name: APP_CELERY_RESULT_BACKEND
-          value: redis://cod-cache:6379/2
+          value: redis://cds-cache:6379/2
         - name: APP_SEARCH_ELASTIC_HOSTS
-          value: cod-search
+          value: cds-search
       volumes:
         - name: configuration
           configMap:
-            name: cernopendata-config
+            name: cds-config

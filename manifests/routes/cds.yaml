@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Route
 metadata:
-  name: cernopendata
+  name: cds
 spec:
-  host: test-opendata-dev.web.cern.ch
+  host: test-cds-dev.web.cern.ch
   to:
     kind: Service
     name: cod-proxy

@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cds-config
+data:
+  cds.cfg: |-
+
+    # Database
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://cds:dbpass123@cds-db:5432/cds'
+
+    # Redis
+    CACHE_REDIS_HOST='cds-cache'
+    CACHE_REDIS_URL='redis://cds-cache:6379/0'
+    ACCOUNTS_SESSION_REDIS_URL='redis://cds-cache:6379/1'
+
+    # Celery
+    BROKER_URL='amqp://guest:guest@cds-mq:5672/'
+    CELERY_RESULT_BACKEND='redis://cds-cache:6379/2'
+
+    # Elasticsearch
+    SEARCH_ELASTIC_HOSTS='cds-search'
