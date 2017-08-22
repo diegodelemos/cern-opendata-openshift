@@ -10,21 +10,21 @@ spec:
       name: cds-proxy
       labels:
         app: cds-proxy
-      annotations:
-        pod.beta.kubernetes.io/init-containers: '[
-            {
-                "name": "install",
-                "image": "switowski/cds-web",
-                "imagePullPolicy": "IfNotPresent",
-                "command": ["cp", "-R", "/usr/local/var/cds-instance/static", "/static"],
-                "volumeMounts": [
-                    {
-                      "name": "static",
-                      "mountPath": "/static"
-                    }
-                ]
-            }
-        ]'
+      # annotations:
+      #   pod.beta.kubernetes.io/init-containers: '[
+      #       {
+      #           "name": "install",
+      #           "image": "switowski/cds-web:0.0.5",
+      #           "imagePullPolicy": "IfNotPresent",
+      #           "command": ["cp", "-R", "/usr/local/var/instance/static", "/static"],
+      #           "volumeMounts": [
+      #               {
+      #                 "name": "static",
+      #                 "mountPath": "/static"
+      #               }
+      #           ]
+      #       }
+      #   ]'
     spec:
       containers:
       - name: cds-proxy

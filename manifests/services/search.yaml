@@ -7,11 +7,11 @@ metadata:
     run: cds-search
 spec:
   ports:
-  - name: restapi
-    port: 9200
-    protocol: TCP
-  - name: api
-    port: 9300
-    protocol: TCP
+    - name: restapi
+      port: 9200
+      protocol: TCP
+    - name: api
+      port: 9300
+      protocol: TCP
   selector:
     app: cds-search

@@ -7,7 +7,7 @@ metadata:
     run: cds-cache
 spec:
   ports:
-  - port: 6379
-    protocol: TCP
+    - port: 6379
+      protocol: TCP
   selector:
     app: cds-cache

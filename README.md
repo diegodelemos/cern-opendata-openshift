@@ -1,1 +1,1 @@
-# cern-opendata-openshift
+# CDS-openshift

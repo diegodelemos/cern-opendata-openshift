@@ -12,19 +12,21 @@ spec:
     spec:
       containers:
       - name: cds-web
-        image: switowski/cds-web
-        command:
-          - '/bin/bash'
-          - '-c'
-          - |-
-            cp /cds-config/* /usr/local/var/cds-instance/ &&
-            exec cds run -h 0.0.0.0
+        image: switowski/cds-web:0.0.5
+        # command:
+        #   - '/bin/bash'
+        #   - '-c'
+        #   - |-
+        #     cp /cds-config/* /usr/local/var/cds-instance/ &&
+        #     exec cds run -h 0.0.0.0
         ports:
         - containerPort: 5000
           name: http
         volumeMounts:
           - name: configuration
             mountPath: /cds-config
+          - name: logs
+            mountPath: /logs
         env:
         - name: VIRTUALENVWRAPPER_PYTHON
           value: /usr/local/bin/python
@@ -46,3 +48,5 @@ spec:
         - name: configuration
           configMap:
             name: cds-config
+        - name: logs
+          emptyDir: {}

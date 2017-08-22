@@ -1,0 +1,9 @@
+What issues we have to address:
+- Store passwords in a secure way
+- Setup all instance variables
+- Figure out what exactly needs to be setup for production (which fixtures we load?)
+- How do we deploy changes (from docker image or from github?)
+- Is the 'cds-worker' POD powerfull enough for performing all tasks?
+- How does the PODs actually work? If we have 3 of them, will they be internally loadbalancing requests, or will they use only one POD all the time and the rest is a backup?
+- Get faster PODs for DB (doing 'cds db init' was super slow, so maybe other operations will also be slow) or use the DB on demand
+- Add volumes to come PODs (for persistence)

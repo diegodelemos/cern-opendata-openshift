@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: cds-worker
-        image: switowski/cds-web
+        image: switowski/cds-web:0.0.5
         command: ["celery"]
         args: ["worker", "-A", "cds.celery", "--loglevel=INFO"]
         ports:

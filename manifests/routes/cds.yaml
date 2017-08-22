@@ -4,11 +4,11 @@ kind: Route
 metadata:
   name: cds
 spec:
-  host: test-cds-dev.web.cern.ch
+  host: test-cds-videos.web.cern.ch
   to:
     kind: Service
-    name: cod-proxy
+    name: cds-proxy
   port:
     targetPort: http
   selector:
-    app: cod-proxy
+    app: cds-proxy

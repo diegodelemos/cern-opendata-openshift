@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: cds-search
-        image: switowski/cds-search
+        image: switowski/cds-search:0.0.2
         ports:
         - containerPort: 9200
         - containerPort: 9300

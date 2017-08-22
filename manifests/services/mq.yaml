@@ -7,11 +7,11 @@ metadata:
     run: cds-mq
 spec:
   ports:
-  - name: tcp
-    port: 4369
-    protocol: TCP
-  - name: management
-    port: 5672
-    protocol: TCP
+    - name: tcp
+      port: 4369
+      protocol: TCP
+    - name: management
+      port: 5672
+      protocol: TCP
   selector:
     app: cds-mq
