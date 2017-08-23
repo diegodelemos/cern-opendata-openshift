@@ -10,16 +10,16 @@ spec:
       labels:
         app: cds-cache
     spec:
+      volumes:
+      - name: cache
+        persistentVolumeClaim:
+          claimName: cache
       containers:
       - name: cds-cache
         image: redis
         ports:
         - containerPort: 5432
           name: tcp
-#        volumeMounts:
-#          name: data
-#          mountPath: /data
-#      volumes:
-#        - name: data
-#          persistentVolumeClaim:
-#            claimName: cache
+        volumeMounts:
+        - name: cache
+          mountPath: /data
