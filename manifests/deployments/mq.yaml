@@ -2,16 +2,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-mq
+  name: cds-mq
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: cod-mq
+        app: cds-mq
     spec:
       containers:
-      - name: cod-mq
+      - name: cds-mq
         image: rabbitmq
         ports:
         - containerPort: 4369

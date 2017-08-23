@@ -2,16 +2,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cod-mq
+  name: cds-mq
   labels:
-    run: cod-mq
+    run: cds-mq
 spec:
   ports:
-  - name: tcp
-    port: 4369
-    protocol: TCP
-  - name: management
-    port: 5672
-    protocol: TCP
+    - name: tcp
+      port: 4369
+      protocol: TCP
+    - name: management
+      port: 5672
+      protocol: TCP
   selector:
-    app: cod-mq
+    app: cds-mq

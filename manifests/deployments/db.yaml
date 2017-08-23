@@ -2,24 +2,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-db
+  name: cds-db
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: cod-db
+        app: cds-db
     spec:
       containers:
-      - name: cod-db
+      - name: cds-db
         image: centos/postgresql-95-centos7
         ports:
         - containerPort: 5432
         env:
         - name: POSTGRESQL_USER
-          value: cernopendata
+          value: cds
         - name: POSTGRESQL_DATABASE
-          value: cernopendata
+          value: cds
         - name: POSTGRESQL_PASSWORD
           value: dbpass123
 #        volumeMounts:

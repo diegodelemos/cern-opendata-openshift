@@ -2,24 +2,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-cache
+  name: cds-cache
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: cod-cache
+        app: cds-cache
     spec:
+      volumes:
+      - name: cache
+        persistentVolumeClaim:
+          claimName: cache
       containers:
-      - name: cod-cache
+      - name: cds-cache
         image: redis
         ports:
         - containerPort: 5432
           name: tcp
-#        volumeMounts:
-#          name: data
-#          mountPath: /data
-#      volumes:
-#        - name: data
-#          persistentVolumeClaim:
-#            claimName: cache
+        volumeMounts:
+        - name: cache
+          mountPath: /data

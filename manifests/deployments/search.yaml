@@ -2,17 +2,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cod-search
+  name: cds-search
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: cod-search
+        app: cds-search
     spec:
       containers:
-      - name: cod-search
-        image: diegodelemos/cod-search
+      - name: cds-search
+        image: switowski/cds-search:0.0.2
         ports:
         - containerPort: 9200
         - containerPort: 9300
