@@ -12,10 +12,27 @@ spec:
     spec:
       containers:
       - name: cod-search
-        image: diegodelemos/cod-search
+        image: elasticsearch
         ports:
         - containerPort: 9200
         - containerPort: 9300
+        volumeMounts:
+          - mountPath: /usr/share/elasticsearch/data/elasticsearch
+            name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: search
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - cod-search
+        from:
+          kind: ImageStreamTag
+          name: elasticsearch:latest
+    - type: ConfigChange
 
 # This DeploymentConfig needs to provide a volume mounted under
 # `/usr/share/elasticsearch/data/elasticsearch`
