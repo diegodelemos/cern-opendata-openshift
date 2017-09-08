@@ -16,5 +16,13 @@ spec:
         ports:
         - containerPort: 5432
           name: tcp
+        volumeMounts:
+          name: data
+          mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: cache
+
 # This DeploymentConfig needs to provide a volume mounted under
 # `/data`
