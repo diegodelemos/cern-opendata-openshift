@@ -13,7 +13,7 @@ data:
         error_log   /dev/stdout;
 
         location /static {
-           root /static/;
+           root /usr/local/var/cernopendata-instance/static/;
            autoindex off;
         }
 

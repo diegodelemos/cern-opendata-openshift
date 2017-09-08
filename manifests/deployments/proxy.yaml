@@ -10,25 +10,10 @@ spec:
       name: cod-proxy
       labels:
         app: cod-proxy
-      annotations:
-        pod.beta.kubernetes.io/init-containers: '[
-            {
-                "name": "install",
-                "image": "diegodelemos/cod-web",
-                "imagePullPolicy": "IfNotPresent",
-                "command": ["cp", "-R", "/usr/local/var/cernopendata-instance/static/", "/static"],
-                "volumeMounts": [
-                    {
-                      "name": "static",
-                      "mountPath": "/static"
-                    }
-                ]
-            }
-        ]'
     spec:
       containers:
       - name: cod-proxy
-        image: nginx
+        image: cod-nginx
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -55,3 +40,13 @@ spec:
           emptyDir: {}
         - name: static
           emptyDir: {}
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - cod-proxy
+        from:
+          kind: ImageStreamTag
+          name: cod-nginx:latest
+    - type: ConfigChange

@@ -1,0 +1,35 @@
+---
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: cod-nginx
+spec:
+  runPolicy: Serial
+  triggers: 
+    - type: "ImageChange"
+      imageChange:
+        from:
+          kind: ImageStreamTag
+          name: web:latest
+  source:
+    type: Dockerfile
+    dockerfile: |
+      FROM nginx
+      COPY web_static_content/ /usr/local/var/cernopendata-instance
+    images:
+      - from:
+          kind: ImageStreamTag
+          name: 'web:latest'
+        paths:
+          - sourcePath: /usr/local/var/cernopendata-instance/static
+            destinationDir: web_static_content
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: nginx
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'cod-nginx:latest'
