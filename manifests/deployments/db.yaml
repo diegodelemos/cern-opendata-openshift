@@ -29,6 +29,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: db
-
-# This DeploymentConfig needs to provide a volume mounted under
-# `/var/lib/pgsql/data`

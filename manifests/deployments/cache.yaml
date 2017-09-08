@@ -23,6 +23,3 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: cache
-
-# This DeploymentConfig needs to provide a volume mounted under
-# `/data`
