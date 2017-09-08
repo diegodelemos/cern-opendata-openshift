@@ -1,0 +1,11 @@
+---
+kind: "ImageStream"
+apiVersion: "v1"
+metadata:
+  name: "python"
+spec:
+  tags:
+  - name: "2.7-slim"
+    from:
+      kind: DockerImage
+      name: "docker.io/python:2.7-slim"

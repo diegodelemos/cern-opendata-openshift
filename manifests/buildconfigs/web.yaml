@@ -1,0 +1,27 @@
+---
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: web
+spec:
+  triggers: 
+    - type: "GitHub"
+      github:
+        secret: "4BxFmkLUWatpd0C+Zb8ByEgXhGd/JzFixEErJgq3ogo="
+    - type: "ImageChange"
+      imageChange: {}
+  source: 
+    type: "Git"
+    git:
+      uri: "https://github.com/diegodelemos/opendata.cern.ch"
+      ref: "remove-venv-docker"
+  strategy: 
+    type: "Docker"
+    dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "python:2.7-slim"
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "web:latest"

@@ -1,0 +1,22 @@
+---
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: search
+spec:
+  source:
+    dockerfile: |-
+      FROM elasticsearch:2
+      RUN /usr/share/elasticsearch/bin/plugin remove mapper-attachments
+      RUN /usr/share/elasticsearch/bin/plugin install -b mapper-attachments
+    type: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: elasticsearch:latest
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: elasticsearch:2
+    type: Docker

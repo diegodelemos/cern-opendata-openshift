@@ -1,0 +1,8 @@
+---
+kind: "ImageStream"
+apiVersion: "v1"
+metadata:
+  name: "web"
+spec:
+  tags:
+  - name: "latest"
