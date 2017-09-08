@@ -4,7 +4,7 @@ kind: Route
 metadata:
   name: cernopendata
 spec:
-  host: test-opendata-dev.web.cern.ch
+  host: opendata-dev.web.cern.ch
   to:
     kind: Service
     name: cod-proxy
