@@ -22,3 +22,6 @@ spec:
           value: cernopendata
         - name: POSTGRESQL_PASSWORD
           value: dbpass123
+
+# This DeploymentConfig needs to provide a volume mounted under
+# `/var/lib/pgsql/data`

@@ -16,3 +16,6 @@ spec:
         ports:
         - containerPort: 9200
         - containerPort: 9300
+
+# This DeploymentConfig needs to provide a volume mounted under
+# `/usr/share/elasticsearch/data/elasticsearch`

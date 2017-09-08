@@ -16,3 +16,5 @@ spec:
         ports:
         - containerPort: 5432
           name: tcp
+# This DeploymentConfig needs to provide a volume mounted under
+# `/data`
